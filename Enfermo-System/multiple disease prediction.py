@@ -31,8 +31,16 @@ if (selected=='Diabetes Prediction'):
     SkinThickness = st.text_input('Skin Thickness value')
     Insulin = st.text_input('Insulin Level')
     BMI = st.text_input('BMI value')
-    DiabetesPedigreeFunction = st.text_input('DiabetesPedigreeFunction value')
-    Age = st.text_input('Age') 
+    DiabetesPedigreeFunction = st.text_input('Diabetes Pedigree Function value')
+    Age = st.text_input('Patients Age')  
+    
+    #code for prediction
+    diab_diagnosis=''
+    
+    #creating button for prediction
+    
+    if st.button('Diabetes Test Result'):
+        diab_prediction=diabetes_model.predict([[Pregnancies]])
      
     
 if (selected == 'Heart Disease Prediction'):
@@ -41,10 +49,15 @@ if (selected == 'Heart Disease Prediction'):
     
     Pregnancies = st.text_input('Age')
     Glucose = st.text_input('Sex')
-    BloodPressure = st.text_input('Blood Pressure value')
-    SkinThickness = st.text_input('Skin Thickness value')
-    Insulin = st.text_input('Insulin Level')
-    BMI = st.text_input('BMI value')
-    DiabetesPedigreeFunction = st.text_input('DiabetesPedigreeFunction value')
-    Age = st.text_input('Age')
+    BloodPressure = st.text_input('Chest Pain Type (4 values)')
+    SkinThickness = st.text_input('Resting Blood Pressure value')
+    Insulin = st.text_input('Serum Cholestoral in mg/dl ')
+    BMI = st.text_input('Fasting Blood Sugar > 120 mg/dl')
+    DiabetesPedigreeFunction = st.text_input('Resting Electrocardiographic Results (values 0,1,2)')
+    Age = st.text_input('Maximum Heart Rate Achieved ')
+    Insulin = st.text_input('Exercise Induced Angina ')
+    BMI = st.text_input('oldpeak = ST depression induced by exercise relative to rest ')
+    DiabetesPedigreeFunction = st.text_input('The slope of the peak exercise ST segment ')
+    Age = st.text_input('Number of major vessels (0-3) colored by flourosopy ') 
+     
    
