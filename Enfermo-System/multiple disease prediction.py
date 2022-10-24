@@ -24,15 +24,37 @@ with st.sidebar:
 if (selected=='Diabetes Prediction'):
     #page title
     st.title('Diabetes Prediction')
+    
+    #columns for input field
+    col1,col2,col3 =st.columns(3)
+    
+    with col1:
+        Pregnancies = st.text_input('Number of Pregnancies')
+        
+    with col2:
+        Glucose = st.text_input('Glucose Level')
+    with col3:
+        BloodPressure = st.text_input('Blood Pressure value')
+    with col1:
+        SkinThickness = st.text_input('Skin Thickness value')
+    with col2:
+        Insulin = st.text_input('Insulin Level')
+    with col3:
+        BMI = st.text_input('BMI value')
+    with col1:
+        DiabetesPedigreeFunction = st.text_input('Diabetes Pedigree Function value')
+    with col2:
+        Age = st.text_input('Patients Age')  
+
    
-    Pregnancies = st.text_input('Number of Pregnancies')
-    Glucose = st.text_input('Glucose Level')
-    BloodPressure = st.text_input('Blood Pressure value')
-    SkinThickness = st.text_input('Skin Thickness value')
-    Insulin = st.text_input('Insulin Level')
-    BMI = st.text_input('BMI value')
-    DiabetesPedigreeFunction = st.text_input('Diabetes Pedigree Function value')
-    Age = st.text_input('Patients Age')  
+    
+    
+    
+    
+    
+    
+    
+  
     
     #code for prediction
     diab_diagnosis=''
@@ -40,24 +62,71 @@ if (selected=='Diabetes Prediction'):
     #creating button for prediction
     
     if st.button('Diabetes Test Result'):
-        diab_prediction=diabetes_model.predict([[Pregnancies]])
-     
+        diab_prediction=diabetes_model.predict([[Pregnancies, Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]])
+        
+        if(diab_prediction[0]==1):
+            diab_diagnosis='The person is Diabetic'
+        else:
+            diab_diagnosis='The person is not Diabetic'
+        
+    st.success(diab_diagnosis)
     
 if (selected == 'Heart Disease Prediction'):
     #page title
     st.title('Heart Disease Prediction')
     
-    Pregnancies = st.text_input('Age')
-    Glucose = st.text_input('Sex')
-    BloodPressure = st.text_input('Chest Pain Type (4 values)')
-    SkinThickness = st.text_input('Resting Blood Pressure value')
-    Insulin = st.text_input('Serum Cholestoral in mg/dl ')
-    BMI = st.text_input('Fasting Blood Sugar > 120 mg/dl')
-    DiabetesPedigreeFunction = st.text_input('Resting Electrocardiographic Results (values 0,1,2)')
-    Age = st.text_input('Maximum Heart Rate Achieved ')
-    Insulin = st.text_input('Exercise Induced Angina ')
-    BMI = st.text_input('oldpeak = ST depression induced by exercise relative to rest ')
-    DiabetesPedigreeFunction = st.text_input('The slope of the peak exercise ST segment ')
-    Age = st.text_input('Number of major vessels (0-3) colored by flourosopy ') 
+    #columns for input field
+    col1,col2,col3 =st.columns(3)
+    
+    with col1:
+        age = st.number_input('Age')
+    with col2:
+        sex = st.number_input('Sex')
+    with col3:
+        cp = st.number_input('Chest Pain Type (4 values)')
+    with col1:
+        trestbps = st.number_input('Resting Blood Pressure value')
+    with col2:
+        chol = st.number_input('Serum Cholestoral in mg/dl ')
+    with col3:
+        fbs = st.number_input('Fasting Blood Sugar > 120 mg/dl')
+    with col1:
+        restecg = st.number_input('Resting Electrocardiographic Results')
+    with col2:
+        thalach = st.number_input('Maximum Heart Rate Achieved ')
+    with col3:
+        exang = st.number_input('Exercise Induced Angina ')
+    with col1:
+        oldpeak = st.number_input('ST depression induced by exercise')
+    with col2:
+        slope = st.number_input('The slope of the peak exercise ST segment ')
+    with col3:
+        ca = st.number_input('Number of vessels colored by flourosopy ')
+    with col1:
+        thal =st.number_input('thal:0 = normal; 1 = fixed defect; 2 = reversible defect')
+   
+    
+    # code for Prediction
+    heart_diagnosis = ''
+    
+    # creating a button for Prediction
+    
+    if st.button('Heart Disease Test Result'):
+        heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]])                          
+        
+        if (heart_prediction[0] == 1):
+          heart_diagnosis = 'The person has a heart disease'
+        else:
+          heart_diagnosis = 'The person does not have any heart disease'
+        
+    st.success(heart_diagnosis)
+    
+    
+    
+    
+   
+    
+    
+     
      
    
